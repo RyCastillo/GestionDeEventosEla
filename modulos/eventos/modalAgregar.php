@@ -1,6 +1,6 @@
 <!-- Modal -->
 <form id="fmrAgregarEvento" onsubmit="return agregarEvento()">
-  <div class="modal fade"  id="modalAgregarEvento" tabindex="-1" aria-labelledby="modalAgregarEventoLabel" aria-hidden="true">
+  <div class="modal fade" id="modalAgregarEvento" tabindex="-1" aria-labelledby="modalAgregarEventoLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -18,8 +18,10 @@
           <input type="date" class="form-control" id="fecha" name="fecha" required>
           <label for="lugar"> Lugar </label>
           <input type="text" class="form-control" id="lugar" name="lugar" required>
-          <label for="recursos"> Recursos </label>
-          <input type="text" class="form-control" id="recursos" name="recursos">
+          <label for="recursos">Recursos</label>
+          <div id="recursosSeleccionables">
+            <!-- Aquí se cargarán los recursos dinámicamente como checkboxes -->
+          </div>
           <label for="numeros"> Numeros </label>
           <input type="text" class="form-control" id="numeros" name="numeros">
         </div>

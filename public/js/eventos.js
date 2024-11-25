@@ -2,6 +2,11 @@ $(document).ready(function(){
     $('#tablaEventos').load('eventos/tablaEventos.php');
 });
 
+$(document).on('show.bs.modal', '#modalAgregarEvento', function () {
+    $('#recursosSeleccionables').load('../servidor/recursos/cargarRecursos.php');
+});
+
+
 function buscarPorFecha(){
     let fecha = $('#fechaBuscar').val();
     $('#tablaEventos').load('eventos/tablaEventos.php?fecha=' + fecha);

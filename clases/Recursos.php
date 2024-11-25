@@ -61,7 +61,19 @@
             }
         }
         
+        public function obtenerRecursos() {
+            $conexion = Conexion::conectar();
+            $sql = "SELECT idRecurso, nombreRecurso FROM t_recursos";
+            $resultado = $conexion->query($sql);
         
+            $recursos = array();
+            while ($row = $resultado->fetch_assoc()) {
+                $recursos[] = $row; // Agrega cada recurso a un array
+            }
+        
+            $conexion->close(); // Cierra la conexión
+            return $recursos;
+        }
         
         
     }
