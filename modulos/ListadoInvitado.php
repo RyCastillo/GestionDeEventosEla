@@ -14,8 +14,12 @@ $items = $Eventos->mostrarInvitadosEvento($id_evento);
     <div class="col">
       <div class="card mt-3">
         <div class="card-body">
-          <h2> Evento : <?php echo @$items[0]['nombreEvento']; ?> </h2>
-          <h3> Fecha del Evento: <?php echo @$items[0]['fechaEvento']; ?></h3>
+          <h2>Evento: <?php echo @$items[0]['nombreEvento']; ?></h2>
+          <h3>Fecha del Evento: <?php echo @$items[0]['fechaEvento']; ?></h3>
+          <h4>Recursos del Evento:</h4>
+          <p><?php echo @$items[0]['recursos']; ?></p>
+          <h4>Números:</h4>
+          <p><?php echo @$items[0]['numeros']; ?></p>
           <table class="table table-sm table-hover " id="tablaInvitadosLoad">
             <thead>
               <tr>

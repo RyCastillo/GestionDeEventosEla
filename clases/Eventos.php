@@ -5,28 +5,41 @@ class Eventos extends Conexion
     public function mostrarEventos($id_usuario, $fecha)
     {
         $conexion = Conexion::conectar();
-        if($fecha != ""){
-            $sql = "SELECT id_evento, nombre_evento, DATE_FORMAT(hora_inicio, '%H:%i:%s') AS hora_inicio,
-                                              DATE_FORMAT(hora_fin, '%H:%i:%s') AS hora_fin,
-                                              DATE_FORMAT (fecha, '%d-%m-%Y') AS fecha,
-                                              lugar,
-                                              recursos,
-                                              numeros        
-                    FROM t_eventos
-                    WHERE id_usuario = '$id_usuario' AND fecha LIKE '%". $fecha ."%' ";
-        }else {
-            $sql = "SELECT id_evento, nombre_evento, DATE_FORMAT(hora_inicio, '%H:%i:%s') AS hora_inicio,
-                                              DATE_FORMAT(hora_fin, '%H:%i:%s') AS hora_fin,
-                                              DATE_FORMAT (fecha, '%d-%m-%Y') AS fecha,
-                                              lugar,
-                                              recursos,
-                                              numeros        
-                    FROM t_eventos
-                    WHERE id_usuario = '$id_usuario'";
+        if ($fecha != "") {
+            $sql = "SELECT 
+                    e.id_evento,
+                    e.nombre_evento,
+                    DATE_FORMAT(e.hora_inicio, '%H:%i:%s') AS hora_inicio,
+                    DATE_FORMAT(e.hora_fin, '%H:%i:%s') AS hora_fin,
+                    DATE_FORMAT(e.fecha, '%d-%m-%Y') AS fecha,
+                    e.lugar,
+                    GROUP_CONCAT(r.nombreRecurso SEPARATOR ', ') AS recursos,
+                    e.numeros
+                FROM t_eventos AS e
+                LEFT JOIN t_recursos AS r ON FIND_IN_SET(r.idRecurso, e.recursos)
+                WHERE e.id_usuario = '$id_usuario' 
+                AND e.fecha LIKE '%" . $fecha . "%'
+                GROUP BY e.id_evento";
+        } else {
+            $sql = "SELECT 
+                    e.id_evento,
+                    e.nombre_evento,
+                    DATE_FORMAT(e.hora_inicio, '%H:%i:%s') AS hora_inicio,
+                    DATE_FORMAT(e.hora_fin, '%H:%i:%s') AS hora_fin,
+                    DATE_FORMAT(e.fecha, '%d-%m-%Y') AS fecha,
+                    e.lugar,
+                    GROUP_CONCAT(r.nombreRecurso SEPARATOR ', ') AS recursos,
+                    e.numeros
+                FROM t_eventos AS e
+                LEFT JOIN t_recursos AS r ON FIND_IN_SET(r.idRecurso, e.recursos)
+                WHERE e.id_usuario = '$id_usuario'
+                GROUP BY e.id_evento";
         }
+
         $respuesta = mysqli_query($conexion, $sql);
         return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
     }
+
 
     public function editarEventos($id_evento)
     {
