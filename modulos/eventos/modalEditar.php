@@ -18,8 +18,29 @@
           <input type="date" class="form-control" id="fechau" name="fechau" required>
           <label for="lugaru"> Lugar </label>
           <input type="text" class="form-control" id="lugaru" name="lugaru" required>
-          <label for="recursosu"> Recursos </label>
-          <input type="text" class="form-control" id="recursosu" name="recursosu">
+
+          <div id="recursosu"></div>
+
+
+          
+          <!-- <?php if (!empty($resultado_evento['recursos'])): ?>
+            <label>Recursos</label>
+            <?php foreach ($resultado_evento['recursos'] as $recurso): ?>
+              <div>
+                <input type="checkbox"
+                  name="recursos[]"
+                  value="<?= htmlspecialchars($recurso['idRecurso']) ?>"
+                  <?= $recurso['asignado'] ? 'checked' : '' ?>>
+                <?= htmlspecialchars($recurso['nombreRecurso']) ?>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p>No hay recursos disponibles.</p>
+          <?php endif; ?> -->
+
+
+
+
           <label for="numerosu"> Numeros </label>
           <input type="text" class="form-control" id="numerosu" name="numerosu">
         </div>

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     editable: true,
     events: '../servidor/fullCalendar/eventos.php',
-    initialDate: '2023-06-15'
+    initialDate: new Date()
     });
 
     calendar.render();

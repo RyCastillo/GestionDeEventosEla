@@ -6,26 +6,25 @@ include('menu.php');
 
 
 <!-- Page Content -->
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col">
+    <div class="col-12">
       <div class="card mt-3">
         <div class="card-body">
           <h2>Eventos</h2>
           
           <div class="row">
-            <div class="col">
-              <span class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarEvento">
-                Agregar Evento
-              </span>
-            </div>
-            <div class="col"></div>
-            <div class="col">
-              <div class="input-group mb-3">
-                <input type="date" class="form-control" id="fechaBuscar" >
-                <span class="btn btn-primary" onclick="buscarPorFecha()">
+           
+            <!-- Columna Vacía para Alineación (en pantallas grandes) -->
+            <div class="col-12 col-md-4 mb-3 d-none d-md-block"></div>
+
+            <!-- Input de búsqueda con fecha -->
+            <div class="col-12 col-md-4 mb-3">
+              <div class="input-group">
+                <input type="date" class="form-control" id="fechaBuscar">
+                <button class="btn btn-primary" onclick="buscarPorFecha()">
                   <i class="fa-solid fa-magnifying-glass"></i>
-                </span>
+                </button>
               </div>
             </div>
           </div>
@@ -38,8 +37,9 @@ include('menu.php');
   </div>
 </div>
 
+
 <?php
-include('eventos/modalAgregar.php');
+
 include('eventos/modalEditar.php');
 include('footer.php');
 ?>

@@ -1,0 +1,12 @@
+Array
+(
+    [id_evento] => 18
+    [nombre_evento] => xd
+    [hora_inicio] => 2024-12-04 16:43:00
+    [hora_fin] => 2024-12-04 16:43:00
+    [fecha] => 2024-12-04
+    [lugar] => xd
+    [recursos] => 9,14
+    [numeros] => xd
+    [id_usuario] => 1
+)

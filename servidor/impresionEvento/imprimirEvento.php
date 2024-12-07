@@ -6,7 +6,8 @@ include_once "../../vendor/autoload.php";
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 // Introducimos HTML de prueba
-$html=$Utiles->file_get_contents_curl("http://localhost/EventosEla/modulos/listadoInvitado.php?id_evento=" . $idObtenido);
+$html=$Utiles->file_get_contents_curl("http://localhost/eventos/modulos/listadoInvitado.php?id_evento=" . $idObtenido);
+
 $dompdf->loadHtml($html);
 // Render the HTML as PDF
 $dompdf->render();

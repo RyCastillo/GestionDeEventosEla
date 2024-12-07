@@ -34,10 +34,10 @@ CREATE TABLE `t_eventos` (
   `hora_inicio` datetime NOT NULL,
   `hora_fin` datetime NOT NULL,
   `fecha` date NOT NULL,
-  `lugar` varchar(245) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `lugar` varchar(245) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `recursos` text,
   `numeros` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `t_eventos`
@@ -61,8 +61,8 @@ CREATE TABLE `t_invitados` (
   `id_invitado` int NOT NULL,
   `id_evento` int NOT NULL,
   `nombre_invitado` varchar(245) NOT NULL,
-  `email` varchar(245) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `email` varchar(245) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `t_invitados`
@@ -83,8 +83,8 @@ INSERT INTO `t_invitados` (`id_invitado`, `id_evento`, `nombre_invitado`, `email
 
 CREATE TABLE `t_recursos` (
   `idRecurso` int NOT NULL,
-  `nombreRecurso` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `nombreRecurso` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `t_recursos`
@@ -107,7 +107,7 @@ CREATE TABLE `t_usuarios` (
   `id_usuario` int NOT NULL,
   `usuario` varchar(245) NOT NULL,
   `password` varchar(245) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `t_usuarios`
@@ -140,7 +140,21 @@ CREATE TABLE `v_invitados` (
 --
 DROP TABLE IF EXISTS `v_invitados`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_invitados`  AS SELECT `invitados`.`id_invitado` AS `idInvitado`, `id_usuario` AS `id_usuario`, `nombre_evento` AS `nombreEvento`, `invitados`.`email` AS `email`, `invitados`.`id_evento` AS `idEvento`, `invitados`.`nombre_invitado` AS `nombre`, date_format(`fecha`,'%d-%m-%Y') AS `fechaEvento` FROM (`t_invitados` `invitados` join `t_eventos` `eventos` on((`invitados`.`id_evento` = `id_evento`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_invitados` AS
+SELECT 
+    `invitados`.`id_invitado` AS `idInvitado`, 
+    `id_usuario` AS `id_usuario`, 
+    `nombre_evento` AS `nombreEvento`, 
+    `invitados`.`email` AS `email`, 
+    `invitados`.`id_evento` AS `idEvento`, 
+    `invitados`.`nombre_invitado` AS `nombre`, 
+    DATE_FORMAT(`fecha`, '%d-%m-%Y') AS `fechaEvento`
+FROM 
+    `t_invitados` AS `invitados`
+JOIN 
+    `t_eventos` AS `eventos`
+ON 
+    `invitados`.`id_evento` = `eventos`.`id_evento`;
 
 --
 -- Índices para tablas volcadas

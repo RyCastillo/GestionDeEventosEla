@@ -12,7 +12,6 @@
       'numeros' => $_POST['numeros']
   );
   
-
     echo $Eventos->agregar($data);
 
 ?>
